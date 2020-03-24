@@ -15,7 +15,13 @@ class ActivityImage extends StatelessWidget {
               height: 135,
               width: 1000,
               margin: EdgeInsets.only(bottom: 2.0),
-              child:
+              child: FadeInImage(
+                placeholder: AssetImage('assets/long-loader.gif'),
+                image: AssetImage('assets/${item["image"]}'),
+                fit: BoxFit.cover,
+              )
+
+              //IMAGE 1
 //              FadeInImage.assetNetwork(
 //                  placeholder: 'assets/long-loader.gif',
 //                  image:
@@ -23,15 +29,19 @@ class ActivityImage extends StatelessWidget {
 //              fit: BoxFit.cover,
 //              )
 
-              FadeInImage(
-                placeholder: AssetImage('assets/long-loader.gif'),
-                image: AssetImage('assets/${item["image"]}'),
-                fit: BoxFit.cover,
-              )
-//            Image(
-//              image: AssetImage('assets/${item["image"]}'),
-//              fit: BoxFit.cover,
-//            ),
+            //IMAGE 2 : if we are not going to use kTransparentImage, remove import and dependency from pubspec.yaml
+//              FadeInImage.memoryNetwork(
+//                placeholder: kTransparentImage,
+//                image:
+//                'https://www.surfingtheplanet.com/wp-content/uploads/2018/07/ruta-romanica-vall-boi.jpg',
+//                fit: BoxFit.cover,
+//              )
+
+            //INITIAL IMAGE
+//              Image(
+//                image: AssetImage('assets/${item["image"]}'),
+//                fit: BoxFit.cover,
+//              ),
               ),
           shaderCallback: (Rect bounds) {
             return LinearGradient(colors: [
