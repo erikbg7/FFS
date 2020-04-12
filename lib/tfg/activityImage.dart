@@ -47,10 +47,12 @@ class ActivityImage extends StatelessWidget {
             return LinearGradient(colors: [
               Colors.white,
               Color.fromARGB(150, 0, 0, 0),
+              Colors.transparent,
               Colors.transparent
             ], stops: [
               0.0,
-              0.4,
+              0.45,
+              0.7,
               1
             ]).createShader(bounds);
           },
