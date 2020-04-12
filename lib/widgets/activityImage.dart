@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/favoriteIcon.dart';
+import 'package:first_flutter_app/widgets/favoriteIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 

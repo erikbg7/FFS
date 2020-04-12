@@ -1,6 +1,6 @@
 import 'package:first_flutter_app/network/network.dart';
-import 'package:first_flutter_app/tfg/activityImage.dart';
-import 'package:first_flutter_app/tfg/maskedImage.dart';
+import 'package:first_flutter_app/widgets/activityImage.dart';
+import 'package:first_flutter_app/code/maskedImage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -20,8 +20,12 @@ Future<void> getUserTaskList() async {
 class ActivityList extends StatelessWidget {
   ActivityList({Key key}) : super(key: key);
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('La Vall de Boí'),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance.collection("activities").snapshots(),
         builder: (context, snapshot) {

@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/selectAge.dart';
-import 'package:first_flutter_app/selectGender.dart';
+import 'package:first_flutter_app/code/selectAge.dart';
+import 'package:first_flutter_app/widgets/selectGender.dart';
 import 'package:flutter/material.dart';
 
 class ProfileSetUp extends StatelessWidget {

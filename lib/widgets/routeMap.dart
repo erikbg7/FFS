@@ -1423,11 +1423,9 @@ class _RouteMapState extends State<RouteMap> {
   }
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    home: Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       appBar: AppBar(
         title: const Text('Ruta dels Boscos - Barruera'),
-        backgroundColor: Colors.green[700],
       ),
       body: GoogleMap(
         mapType: MapType.satellite,
@@ -1439,8 +1437,7 @@ class _RouteMapState extends State<RouteMap> {
         polylines: Set<Polyline>.of(lines),
         // markers: _markers.values.toSet(),
       ),
-    ),
-  );
+    );
 }
 
 
