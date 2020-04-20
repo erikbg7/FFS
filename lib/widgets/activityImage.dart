@@ -12,7 +12,8 @@ class ActivityImage extends StatelessWidget {
       children: <Widget>[
         ShaderMask(
           child: Container(
-              height: 135,
+//              height: 135,
+              height: 185,
               width: 1000,
               margin: EdgeInsets.only(bottom: 2.0),
               child: FadeInImage(
@@ -63,7 +64,7 @@ class ActivityImage extends StatelessWidget {
           child: Text(
             item["name"],
             style:
-                TextStyle(fontSize: 18, fontWeight: FontWeight.w500, height: 3),
+                TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 3),
           ),
         ),
         Align(
