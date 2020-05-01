@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/widgets/elevation_chart.dart';
 import 'package:first_flutter_app/widgets/selectGender.dart';
 import 'package:first_flutter_app/widgets/activityList.dart';
 import 'package:first_flutter_app/widgets/routeMap.dart';
@@ -9,7 +10,7 @@ void main() {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-/////////////////// Vall de Boí App
+/////////////////// Vall de Boí Apps
 ////////////////////////////////////////////////////////////////////////////
 class VallBoiApp extends StatefulWidget {
   const VallBoiApp({Key key}) : super(key: key);
@@ -24,7 +25,7 @@ class _VallBoiAppState extends State<VallBoiApp> {
   @override
   Widget build(BuildContext context) {
 
-    final _kPages = <Widget>[ActivityList(), RouteMap(), SelectGender()];
+    final _kPages = <Widget>[ActivityList(), RouteMap(), AreaGradient()];
 
     final _kNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
