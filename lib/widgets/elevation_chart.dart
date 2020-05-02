@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -16,6 +17,8 @@ class _AreaGradientState extends State<AreaGradient> {
 
   @override
   Widget build(BuildContext context) {
+    coords = [];
+    count = 0;
     for (final c in coord) {
       coords.add(new SalesData(count, c[2]));
       count++;
@@ -23,54 +26,61 @@ class _AreaGradientState extends State<AreaGradient> {
 
     print(count);
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Elevation Chart'),
+    return SfCartesianChart(
+        margin: EdgeInsets.all(0),
+        plotAreaBorderWidth: 0,
+        // Enables the tooltip for all the series in chart
+        tooltipBehavior: TooltipBehavior(enable: true),
+        // X axis: set isVisible to false slows a lot performance (why??)
+        primaryXAxis: NumericAxis(
+          labelFormat: '',
+          interval: coord.length/5,
+          opposedPosition: true,
+          labelPosition: LabelPosition.inside,
+          majorTickLines: MajorTickLines(size: 0),
+          axisLine: AxisLine(color: Colors.transparent),
         ),
-        body: Center(
-            child: Container(
-                height: 150,
-                child: SfCartesianChart(
-                    // Enables the tooltip for all the series in chart
-                    tooltipBehavior: TooltipBehavior(enable: true),
-                    // Initialize category axis
-                    primaryXAxis: NumericAxis(),
-                    primaryYAxis: NumericAxis(
-//                      maximum: 40,
-                        minimum: 800,
-                        maximum: 1800,
-                        interval: 100,
-                        majorTickLines: MajorTickLines(size: 0),
-                        labelFormat: '{value}m'),
-                    trackballBehavior: TrackballBehavior(
-                        enable: true,
-                        lineType: TrackballLineType.vertical,
-                        activationMode: ActivationMode.singleTap,
-                        tooltipAlignment: ChartAlignment.center,
-                        tooltipDisplayMode: TrackballDisplayMode.floatAllPoints,
-                        tooltipSettings:
-                            InteractiveTooltip(format: 'point.x : point.y'),
-                        shouldAlwaysShow: true),
-                    series: <ChartSeries>[
-                      // Initialize line series
-                      AreaSeries<SalesData, double>(
-                          // Enables the tooltip for individual series
-                          enableTooltip: true,
-                          gradient: LinearGradient(colors: [
-                            Color(0xF05b9129),
-                            Color(0xF0d0901d),
-                            Color(0xF0de410f)
-                          ], stops: [
-                            0.0,
-                            0.65,
-                            1
-                          ]),
-                          dataSource: coords,
-
-                          xValueMapper: (SalesData sales, _) => sales.year,
-                          yValueMapper: (SalesData sales, _) => sales.sales,
-                          name: 'Elevation Chart')
-                    ]))));
+        primaryYAxis: NumericAxis(
+//          isVisible: false,
+          labelFormat: '{value}m',
+          interval: 200,
+          minimum: 800,
+          maximum: 1800,
+//          interval: 150,
+//          minimum: 850,
+//          maximum: 1850,
+          labelPosition: LabelPosition.inside,
+          edgeLabelPlacement: EdgeLabelPlacement.shift,
+          majorTickLines: MajorTickLines(size: 0),
+        ),
+        trackballBehavior: TrackballBehavior(
+          enable: true,
+          lineType: TrackballLineType.vertical,
+          activationMode: ActivationMode.singleTap,
+          tooltipAlignment: ChartAlignment.center,
+          tooltipDisplayMode: TrackballDisplayMode.floatAllPoints,
+          tooltipSettings: InteractiveTooltip(format: 'Altitude:\n point.y'),
+          shouldAlwaysShow: true,
+        ),
+        // Initialize line series
+        series: <ChartSeries>[
+          AreaSeries<SalesData, double>(
+              // Enables the tooltip for individual series
+              enableTooltip: false,
+              gradient: LinearGradient(colors: [
+                Color(0xF05b9129),
+                Color(0xF0d0901d),
+                Color(0xF0de410f)
+              ], stops: [
+                0.0,
+                0.65,
+                1
+              ]),
+              dataSource: coords,
+              xValueMapper: (SalesData sales, _) => sales.year,
+              yValueMapper: (SalesData sales, _) => sales.sales,
+              name: 'Elevation Chart')
+        ]);
   }
 }
 

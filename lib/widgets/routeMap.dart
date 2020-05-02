@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/widgets/elevation_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // Google Maps imports
@@ -1375,11 +1376,13 @@ final coord = [
 /////////////////////////////////////////////////////////////////////////////
 /////////////////// Google Maps
 ////////////////////////////////////////////////////////////////////////////
-final route = Firestore.instance.collection("routes").document("Ruta dels boscos - Barruera");
+final route = Firestore.instance
+    .collection("routes")
+    .document("Ruta dels boscos - Barruera");
 final batch = Firestore.instance.batch();
 
-final DocumentReference documentReference = Firestore.instance.document('routes/test');
-
+final DocumentReference documentReference =
+    Firestore.instance.document('routes/test');
 
 class RouteMap extends StatefulWidget {
   @override
@@ -1390,6 +1393,8 @@ class RouteMap extends StatefulWidget {
 // since it could be called more than once. We have to change it.
 class _RouteMapState extends State<RouteMap> {
   final List<LatLng> points = <LatLng>[];
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 //  List<GeoPoint3> geopoints = <GeoPoint3>[];
   GeoPoint center;
   int zoom;
@@ -1409,7 +1414,7 @@ class _RouteMapState extends State<RouteMap> {
 //        points.add(new LatLng(gp.geopoint.latitude, gp.geopoint.longitude));
 //      }
 
-      for(final c in coord) {
+      for (final c in coord) {
         points.add(new LatLng(c[1], c[0]));
       }
 
@@ -1417,30 +1422,48 @@ class _RouteMapState extends State<RouteMap> {
           points: points,
           polylineId: PolylineId("line_one"),
           color: Colors.orange,
-          width: 5
-      ));
+          width: 5));
     });
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        title: const Text('Ruta dels Boscos - Barruera'),
-      ),
-      body: GoogleMap(
-        mapType: MapType.satellite,
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: const LatLng( 42.494069, 0.810299),
-          zoom: 13,
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: const Text('Ruta dels Boscos - Barruera'),
         ),
-        polylines: Set<Polyline>.of(lines),
-        // markers: _markers.values.toSet(),
-      ),
+        body: Container(
+          child: Stack(
+            children: <Widget>[
+              GoogleMap(
+                mapType: MapType.satellite,
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: const LatLng(42.494069, 0.810299),
+                  zoom: 13,
+                ),
+                polylines: Set<Polyline>.of(lines),
+                // markers: _markers.values.toSet(),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.show_chart),
+          onPressed: () => this._scaffoldKey.currentState.showBottomSheet(
+              (ctx) => _buildBottomSheet(ctx),
+              backgroundColor: Colors.transparent),
+        ),
+      );
+
+  Container _buildBottomSheet(BuildContext context) {
+    return Container(
+      color: Color.fromARGB(170, 148, 168, 170),
+      height: 150,
+      child: AreaGradient(),
     );
+  }
 }
-
-
 
 // TO WORK WITH MARKERS
 //////////////////////////
@@ -1465,4 +1488,3 @@ class _RouteMapState extends State<RouteMap> {
 //    }
 //  }
 //}
-
