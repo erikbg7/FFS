@@ -1,10 +1,10 @@
+import 'package:first_flutter_app/bloc_example/activity_model.dart';
 import 'package:first_flutter_app/widgets/favoriteIcon.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class ActivityImage extends StatelessWidget {
   const ActivityImage({Key key, this.item}) : super(key: key);
-  final item;
+  final Activity item;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class ActivityImage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 2.0),
               child: FadeInImage(
                 placeholder: AssetImage('assets/long-loader.gif'),
-                image: AssetImage('assets/${item["image"]}'),
+                image: AssetImage('assets/${item.image}'),
                 fit: BoxFit.cover,
               )
 
@@ -30,7 +30,7 @@ class ActivityImage extends StatelessWidget {
 //              fit: BoxFit.cover,
 //              )
 
-            //IMAGE 2 : if we are not going to use kTransparentImage, remove import and dependency from pubspec.yaml
+              //IMAGE 2 : if we are not going to use kTransparentImage, remove import and dependency from pubspec.yaml
 //              FadeInImage.memoryNetwork(
 //                placeholder: kTransparentImage,
 //                image:
@@ -38,7 +38,7 @@ class ActivityImage extends StatelessWidget {
 //                fit: BoxFit.cover,
 //              )
 
-            //INITIAL IMAGE
+              //INITIAL IMAGE
 //              Image(
 //                image: AssetImage('assets/${item["image"]}'),
 //                fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class ActivityImage extends StatelessWidget {
         Align(
           alignment: FractionalOffset(0.2, 0.4),
           child: Text(
-            item["name"],
+            item.name,
             style:
                 TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 3),
           ),
@@ -70,7 +70,7 @@ class ActivityImage extends StatelessWidget {
         Align(
           alignment: FractionalOffset(0.2, 1),
           child: Text(
-            item["descr"],
+            item.description,
             style:
                 TextStyle(fontSize: 18, fontWeight: FontWeight.w300, height: 5),
           ),
