@@ -11,6 +11,8 @@ addons:
       - fonts-droid-fallback
 before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
+  - export PATH="$PATH":"$HOME/.pub-cache/bin"
+  - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
   - ./flutter/bin/flutter doctor
 script:
   - ./flutter/bin/flutter test
