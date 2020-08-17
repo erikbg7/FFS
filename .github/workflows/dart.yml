@@ -16,8 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependencies
+    - name: Install Flutter SDK
       run: snap install flutter --classic
+    - name: Install dependencies
       run: flutter pub get
     - name: Run tests
       run: pub run test
