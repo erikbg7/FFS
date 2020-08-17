@@ -1,0 +1,26 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image:  google/dart:latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Snap
+      run: apt install snapd
+    - name: Install Flutter SDK
+      run: snap install flutter --classic
+    - name: Install dependencies
+      run: flutter pub get
+    - name: Run tests
+      run: pub run test
