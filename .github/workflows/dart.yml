@@ -16,6 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Check 1
+      run: cd.. && ls
+    - name: Check 2
+      run: ls
+    - name: Check 3
+      run: cd.. && cd..
     - name: Check path
       run: pwd
     - name: Install dependencies
