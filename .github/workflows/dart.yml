@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install Snap
+      run: apt install snapd
     - name: Install Flutter SDK
       run: snap install flutter --classic
     - name: Install dependencies
