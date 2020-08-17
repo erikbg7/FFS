@@ -1,7 +1,7 @@
 import 'package:first_flutter_app/bloc_example/activities_event.dart';
 import 'package:first_flutter_app/bloc_example/activities_state.dart';
 import 'package:first_flutter_app/bloc_example/activity_repository.dart';
-import 'package:first_flutter_app/widgets/activityImage.dart';
+import 'package:first_flutter_app/widgets/activity_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

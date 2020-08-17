@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/widgets/activityList.dart';
+import 'package:first_flutter_app/widgets/activity_image_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
