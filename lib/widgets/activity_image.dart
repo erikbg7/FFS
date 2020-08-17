@@ -71,6 +71,7 @@ class ActivityImage extends StatelessWidget {
           alignment: FractionalOffset(0.2, 1),
           child: Text(
             item.description,
+            key: Key('description-${item.image}'),
             style:
                 TextStyle(fontSize: 18, fontWeight: FontWeight.w300, height: 5),
           ),

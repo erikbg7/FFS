@@ -1,6 +1,7 @@
 import 'package:first_flutter_app/widgets/elevation_chart.dart';
 import 'package:first_flutter_app/widgets/routeMap.dart';
 import 'package:flutter/material.dart';
+import 'package:first_flutter_app/utils/keys.dart';
 
 import 'bloc_example/activities_list.dart';
 
@@ -28,8 +29,13 @@ class _VallBoiAppState extends State<VallBoiApp> {
 
     final _kNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-          icon: Icon(Icons.cloud), title: Text('Activities')),
-      BottomNavigationBarItem(icon: Icon(Icons.alarm), title: Text('Route')),
+        icon: Icon(Icons.cloud),
+        title: Text('Activities', key: Key(Keys.navigationActivities)),
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.alarm),
+        title: Text('Route', key: Key(Keys.navigationRoute)),
+      ),
       BottomNavigationBarItem(icon: Icon(Icons.forum), title: Text('Test')),
       BottomNavigationBarItem(
           icon: Icon(Icons.settings), title: Text('Settings')),
