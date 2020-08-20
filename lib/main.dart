@@ -1,8 +1,10 @@
-import 'package:first_flutter_app/widgets/elevation_chart.dart';
-import 'package:first_flutter_app/widgets/routeMap.dart';
 import 'package:flutter/material.dart';
 
-import 'bloc_example/activities_list.dart';
+import 'package:first_flutter_app/screens/description/description_screen.dart';
+import 'package:first_flutter_app/screens/home/home_screen.dart';
+
+import 'package:first_flutter_app/widgets/routeMap.dart';
+
 
 void main() {
 //  WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,7 @@ class _VallBoiAppState extends State<VallBoiApp> {
 
   @override
   Widget build(BuildContext context) {
-    final _kPages = <Widget>[ActivitiesList(), RouteMap(), AreaGradient()];
+    final _kPages = <Widget>[HomeScreen(), RouteMap(), DescriptionSliver()];
 
     final _kNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(

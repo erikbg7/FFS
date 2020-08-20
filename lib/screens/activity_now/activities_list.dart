@@ -1,11 +1,14 @@
+import 'package:first_flutter_app/models/activity_model.dart';
 import 'package:first_flutter_app/network/network.dart';
+import 'package:first_flutter_app/screens/home/components/activity_image.dart';
 import 'package:first_flutter_app/widgets/activityImage.dart';
 import 'package:first_flutter_app/code/maskedImage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-final route = Firestore.instance.collection("routes").document("Ruta dels boscos - Barruera");
-
+final route = Firestore.instance
+    .collection("routes")
+    .document("Ruta dels boscos - Barruera");
 
 Future<void> getUserTaskList() async {
   //setZoomInTest(400);
@@ -19,8 +22,8 @@ Future<void> getUserTaskList() async {
 
 class ActivityList extends StatelessWidget {
   ActivityList({Key key}) : super(key: key);
-  @override
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +32,6 @@ class ActivityList extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance.collection("activities").snapshots(),
         builder: (context, snapshot) {
-        // getUserTaskList();
           if (!snapshot.hasData) {
             return Center(
                 child: Image(image: AssetImage('assets/long-loader.gif')));
@@ -37,7 +39,9 @@ class ActivityList extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, position) {
-              return ActivityImage(item: snapshot.data.documents[position]);
+              return ActivityTile(
+                item: Activity.fromFirestore(snapshot.data.documents[position]),
+              );
             },
           );
         },

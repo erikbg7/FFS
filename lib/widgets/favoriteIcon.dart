@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:math';
 
 class FavoriteIcon extends StatefulWidget {
   _FavoriteIconState createState() => _FavoriteIconState();
@@ -7,11 +8,13 @@ class FavoriteIcon extends StatefulWidget {
 
 class _FavoriteIconState extends State<FavoriteIcon> {
   bool _toggleFavourite = false;
+  var id = new Random();
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: (){
+      heroTag: id,
+      onPressed: () {
         setState(() {
           _toggleFavourite = !_toggleFavourite;
         });
@@ -25,7 +28,6 @@ class _FavoriteIconState extends State<FavoriteIcon> {
     );
   }
 }
-
 
 //class _FavoriteIconState extends State<FavoriteIcon> {
 //  @override

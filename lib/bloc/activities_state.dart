@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:first_flutter_app/bloc_example/activity_model.dart';
+import 'package:first_flutter_app/models/activity_model.dart';
 
 abstract class ActivitiesState extends Equatable {
   const ActivitiesState();

@@ -1,4 +1,5 @@
-import 'package:first_flutter_app/bloc_example/activity_model.dart';
+import 'package:first_flutter_app/models/activity_model.dart';
+import 'package:first_flutter_app/screens/detail/activity_detail.dart';
 import 'package:first_flutter_app/widgets/favoriteIcon.dart';
 import 'package:flutter/material.dart';
 
@@ -11,26 +12,34 @@ class ActivityImage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         ShaderMask(
-          child: Container(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ActivityDetail(
+                  imageUrl: 'assets/${item.image}',
+                );
+              }));
+            },
+            child: Container(
 //              height: 135,
-              height: 185,
-              width: 1000,
-              margin: EdgeInsets.only(bottom: 2.0),
-              child: FadeInImage(
-                placeholder: AssetImage('assets/long-loader.gif'),
-                image: AssetImage('assets/${item.image}'),
-                fit: BoxFit.cover,
-              )
+                height: 185,
+                width: 1000,
+                margin: EdgeInsets.only(bottom: 2.0),
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/long-loader.gif'),
+                  image: AssetImage('assets/${item.image}'),
+                  fit: BoxFit.cover,
+                )
 
-              //IMAGE 1
+                //IMAGE 1
 //              FadeInImage.assetNetwork(
 //                  placeholder: 'assets/long-loader.gif',
-//                  image:
+//                  image:w
 //                      'https://www.surfingtheplanet.com/wp-content/uploads/2018/07/ruta-romanica-vall-boi.jpg',
 //              fit: BoxFit.cover,
 //              )
 
-              //IMAGE 2 : if we are not going to use kTransparentImage, remove import and dependency from pubspec.yaml
+                //IMAGE 2 : if we are not going to use kTransparentImage, remove import and dependency from pubspec.yaml
 //              FadeInImage.memoryNetwork(
 //                placeholder: kTransparentImage,
 //                image:
@@ -38,12 +47,13 @@ class ActivityImage extends StatelessWidget {
 //                fit: BoxFit.cover,
 //              )
 
-              //INITIAL IMAGE
+                //INITIAL IMAGE
 //              Image(
 //                image: AssetImage('assets/${item["image"]}'),
 //                fit: BoxFit.cover,
 //              ),
-              ),
+                ),
+          ),
           shaderCallback: (Rect bounds) {
             return LinearGradient(colors: [
               Colors.white,
@@ -63,16 +73,36 @@ class ActivityImage extends StatelessWidget {
           alignment: FractionalOffset(0.2, 0.4),
           child: Text(
             item.name,
-            style:
-                TextStyle(fontSize: 18, fontWeight: FontWeight.w600, height: 3),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              height: 3,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(1.5, 1.5),
+                  blurRadius: 0,
+                  color: Colors.black,
+                )
+              ],
+            ),
           ),
         ),
         Align(
           alignment: FractionalOffset(0.2, 1),
           child: Text(
             item.description,
-            style:
-                TextStyle(fontSize: 18, fontWeight: FontWeight.w300, height: 5),
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w300,
+              height: 5,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(1.5, 1.5),
+                  blurRadius: 0,
+                  color: Colors.black,
+                )
+              ],
+            ),
           ),
         ),
         Align(
@@ -80,7 +110,9 @@ class ActivityImage extends StatelessWidget {
           alignment: FractionalOffset(0.95, 0.4),
           child: Container(
             height: 35,
-            child: FittedBox(child: FavoriteIcon()),
+            child: FittedBox(
+              child: FavoriteIcon(),
+            ),
           ),
         ),
       ],

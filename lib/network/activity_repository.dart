@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'activity_model.dart';
+import '../models/activity_model.dart';
 
 class ActivitiesRepository {
   final Firestore _db = Firestore.instance;

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:first_flutter_app/bloc_example/activities_event.dart';
-import 'package:first_flutter_app/bloc_example/activities_state.dart';
-import 'package:first_flutter_app/bloc_example/activity_repository.dart';
+import 'package:first_flutter_app/bloc/activities_event.dart';
+import 'package:first_flutter_app/bloc/activities_state.dart';
+import 'package:first_flutter_app/network/activity_repository.dart';
 
 class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
   final ActivitiesRepository repository;
