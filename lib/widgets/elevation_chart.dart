@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 
 //ignore: must_be_immutable
 class AreaGradient extends StatefulWidget {
