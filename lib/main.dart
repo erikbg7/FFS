@@ -5,7 +5,6 @@ import 'package:first_flutter_app/screens/home/home_screen.dart';
 
 import 'package:first_flutter_app/widgets/routeMap.dart';
 
-
 void main() {
 //  WidgetsFlutterBinding.ensureInitialized();
   runApp(VallBoiApp());
@@ -49,10 +48,13 @@ class _VallBoiAppState extends State<VallBoiApp> {
 
     return MaterialApp(
         title: 'Flutter Demo',
-        theme:
-            ThemeData(primarySwatch: Colors.teal, brightness: Brightness.dark),
+        theme: ThemeData(
+          primarySwatch: Colors.teal,
+          brightness: Brightness.dark,
+          primaryColor: Colors.black,
+        ),
         home: Scaffold(
-          body: Center(child: _kPages[_currentTabIndex]),
+          body: _kPages[_currentTabIndex],
           bottomNavigationBar: bottomNavBar,
         ));
   }
