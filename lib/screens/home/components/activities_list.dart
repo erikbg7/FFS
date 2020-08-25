@@ -1,3 +1,4 @@
+import 'package:first_flutter_app/screens/home/components/activity_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class ActivitiesList extends StatelessWidget {
     final activitiesBloc = BlocProvider.of<ActivitiesBloc>(context);
     activitiesBloc.add(GetActivities(''));
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 16),
+      color: Colors.white,
       alignment: Alignment.center,
       child: BlocBuilder<ActivitiesBloc, ActivitiesState>(
           builder: (context, state) {
@@ -39,7 +40,7 @@ class ActivitiesList extends StatelessWidget {
 
   Widget buildLoading() {
     return Container(
-      color: Colors.red,
+      color: Colors.black,
     );
   }
 

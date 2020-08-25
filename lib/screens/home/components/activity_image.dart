@@ -4,8 +4,8 @@ import 'package:first_flutter_app/models/activity_model.dart';
 import 'package:first_flutter_app/screens/description/description_screen.dart';
 import 'package:first_flutter_app/widgets/favoriteIcon.dart';
 
-class ActivityTile extends StatelessWidget {
-  const ActivityTile({Key key, this.item}) : super(key: key);
+class ActivityImage extends StatelessWidget {
+  const ActivityImage({Key key, this.item}) : super(key: key);
   final Activity item;
 
   @override
