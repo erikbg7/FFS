@@ -1,4 +1,11 @@
+import 'package:first_flutter_app/code/animatedLabel.dart';
+import 'package:first_flutter_app/screens/map/map_screen.dart';
+import 'package:first_flutter_app/screens/mapFiles/index.dart';
 import 'package:flutter/material.dart';
+import 'package:first_flutter_app/screens/trekking/routes_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
 
 import 'package:first_flutter_app/screens/description/description_screen.dart';
 import 'package:first_flutter_app/screens/home/home_screen.dart';
@@ -25,18 +32,31 @@ class _VallBoiAppState extends State<VallBoiApp> {
 
   @override
   Widget build(BuildContext context) {
-    final _kPages = <Widget>[HomeScreen(), RouteMap(), DescriptionSliver()];
+    final _kPages = <Widget>[
+      HomeScreen(),
+      MyHomePage(title: 'Home'),
+//      MapView(),
+      AnimatedLabel(),
+      RoutesScreen()
+    ];
 
     final _kNavBarItems = <BottomNavigationBarItem>[
       BottomNavigationBarItem(
-          icon: Icon(Icons.cloud), title: Text('Activities')),
-      BottomNavigationBarItem(icon: Icon(Icons.alarm), title: Text('Route')),
+          backgroundColor: Colors.green,
+          icon: Icon(Icons.cloud),
+          title: Text('Activities')),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.alarm), title: Text('Senderisme')),
       BottomNavigationBarItem(icon: Icon(Icons.forum), title: Text('Test')),
       BottomNavigationBarItem(
           icon: Icon(Icons.settings), title: Text('Settings')),
     ];
 
     final bottomNavBar = BottomNavigationBar(
+        backgroundColor: Colors.grey[900],
+        selectedItemColor: Color.fromARGB(155, 0, 169, 186),
+//        unselectedItemColor:  Color.fromARGB(155, 0, 169, 186),
+        unselectedItemColor: Colors.grey[400],
         items: _kNavBarItems,
         currentIndex: _currentTabIndex,
         type: BottomNavigationBarType.fixed,
@@ -47,11 +67,24 @@ class _VallBoiAppState extends State<VallBoiApp> {
         });
 
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'La Vall de Boí',
         theme: ThemeData(
           primarySwatch: Colors.teal,
           brightness: Brightness.dark,
           primaryColor: Colors.black,
+//          bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFFE6E6E6)),
+          textTheme: TextTheme(
+            title: TextStyle( color: Colors.grey[200]),
+//            title: TextStyle( color: Color(0xDEFFFFFF)),
+            subtitle: TextStyle( color: Colors.grey[400], fontSize: 18),
+            caption: TextStyle( color: Colors.grey[600], fontSize: 14),
+
+//            caption: TextStyle( color: Color(0x99FFFFFF)),
+//            subhead: TextStyle( color: Color(0x99FFFFFF), fontSize: 18),
+
+//            headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+//            bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          ),
         ),
         home: Scaffold(
           body: _kPages[_currentTabIndex],

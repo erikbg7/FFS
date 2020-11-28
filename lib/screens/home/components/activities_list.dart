@@ -7,7 +7,6 @@ import 'package:first_flutter_app/bloc/activities_state.dart';
 import 'package:first_flutter_app/bloc/activities_bloc.dart';
 import 'package:first_flutter_app/models/activity_model.dart';
 
-import 'package:first_flutter_app/screens/home/components/activity_image.dart';
 
 class ActivitiesList extends StatelessWidget {
   @override
@@ -16,7 +15,7 @@ class ActivitiesList extends StatelessWidget {
     final activitiesBloc = BlocProvider.of<ActivitiesBloc>(context);
     activitiesBloc.add(GetActivities(''));
     return Container(
-      color: Colors.white,
+      color: Colors.black,
       alignment: Alignment.center,
       child: BlocBuilder<ActivitiesBloc, ActivitiesState>(
           builder: (context, state) {
@@ -25,6 +24,7 @@ class ActivitiesList extends StatelessWidget {
         } else if (state is ActivitiesLoading) {
           return buildLoading();
         } else if (state is ActivitiesLoaded) {
+//          return buildGif();
           return buildColumnWithData(context, state.activity);
         } else if (state is ActivitiesError) {
           return buildInitialInput();
@@ -41,6 +41,18 @@ class ActivitiesList extends StatelessWidget {
   Widget buildLoading() {
     return Container(
       color: Colors.black,
+    );
+  }
+
+  Widget buildGif() {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset('assets/loading-parc.gif')
+        ],
+      ),
     );
   }
 

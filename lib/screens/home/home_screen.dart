@@ -11,8 +11,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('La Vall de Boí'),
+      appBar: AppBar(titleSpacing: 20,
+//        backgroundColor: Color.fromARGB(255, 0, 169, 186),
+        backgroundColor: Colors.grey[900],
+        title: const Text('La Vall de Boí', style: TextStyle(
+            fontFamily: 'Lobster',
+
+            color: Color.fromARGB(155, 0, 169, 186),
+            fontWeight: FontWeight.w500),),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.dehaze),
+            color: Color.fromARGB(155, 0, 169, 186),
+
+//            color: Color.fromARGB(255, 0, 169, 186),
+            onPressed: () {},
+          )
+        ],
       ),
       body: BlocProvider(
         create: (BuildContext context) {
