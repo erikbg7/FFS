@@ -15,21 +15,14 @@ class RouteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 210,
-
-//      width: 270,
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-//        color: Colors.grey[900],
       ),
       margin: EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 0),
       child: Stack(
         children: <Widget>[
           Container(
             height: 210,
-            width: 260,
-//            decoration: BoxDecoration(
-//                borderRadius: BorderRadius.circular(4), color: Colors.white),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -38,23 +31,11 @@ class RouteCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
                       'assets/romanic.jpg',
-//                    width: 110.0,
                       height: 100.0,
                       fit: BoxFit.fill,
                     ),
                   ),
                 ),
-//                Expanded(
-////                  child: FadeInImage.assetNetwork(placeholder: "", image: route.image)
-//
-//                  child: Image(
-//                    alignment: Alignment.center,
-//                    height: 100,
-//                    width: double.infinity,
-//                    image: AssetImage('assets/romanic.jpg'),
-//                    fit: BoxFit.cover,
-//                  ),
-//                ),
                 Container(
                   height: 10,
                 ),

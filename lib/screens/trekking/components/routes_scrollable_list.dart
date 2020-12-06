@@ -29,6 +29,7 @@ class RoutesScrollableList extends StatelessWidget {
             ),
           ),
           SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
