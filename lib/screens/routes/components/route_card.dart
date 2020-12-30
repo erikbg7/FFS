@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:first_flutter_app/models/routes_model.dart';
+import 'package:first_flutter_app/screens/routes_description/routes_description_screen.dart';
 import 'package:first_flutter_app/widgets/routeMap.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +24,18 @@ class RouteCard extends StatelessWidget {
         children: <Widget>[
           Container(
             height: 210,
+            width: 250,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/romanic.jpg',
+                    child: Image.network(
+                      route.image,
                       height: 100.0,
-                      fit: BoxFit.fill,
+                      width: 250.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -63,7 +66,8 @@ class RouteCard extends StatelessWidget {
                   Timer(const Duration(milliseconds: 300), () {
                     return Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return RouteMap();
+//                      return RouteMap();
+                      return RouteDescription(routeInfo: route,);
                     }));
                   });
                 },
