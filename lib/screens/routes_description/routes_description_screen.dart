@@ -54,7 +54,6 @@ class _RouteDescriptionState extends State<RouteDescription> {
   }
 
   Container _buildRouteInfo(BuildContext context, RouteInfo route) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(left: 10, right: 10, top: 10),
