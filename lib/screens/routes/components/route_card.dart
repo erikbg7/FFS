@@ -1,11 +1,6 @@
-import 'dart:async';
-
 import 'package:first_flutter_app/models/routes_model.dart';
-import 'package:first_flutter_app/screens/routes_description/routes_description_screen.dart';
-import 'package:first_flutter_app/widgets/routeMap.dart';
+import 'package:first_flutter_app/screens/church/church_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'route_info_label.dart';
 
 class RouteCard extends StatelessWidget {
   final RouteInfo route;
@@ -14,68 +9,98 @@ class RouteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 210,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      margin: EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 0),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: 210,
-            width: 250,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      route.image,
-                      height: 100.0,
-                      width: 250.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 10,
-                ),
-                Text(route.title,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.subtitle),
-                Row(
-                  children: <Widget>[
-                    RouteInfoLabel(route.time),
-                    RouteInfoLabel(route.distance),
-                    RouteInfoLabel('${route.elevation} \u{2197}'),
-                  ],
-                )
-              ],
-            ),
-          ),
-          Positioned.fill(
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-//                splashColor: Colors.lightGreenAccent,
-                onTap: () {
-                  print("/////////////");
+    Size size = MediaQuery.of(context).size;
+    final marginLeft = key.toString().contains('route-0') ? 19.0 : 12.0;
 
-                  Timer(const Duration(milliseconds: 300), () {
-                    return Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-//                      return RouteMap();
-                      return RouteDescription(routeInfo: route,);
-                    }));
-                  });
-                },
-              ),
-            ),
+    return Container(
+      height: size.height * 0.29,
+      width: size.width * 0.8,
+      decoration: buildBackgroundImage(),
+      margin: EdgeInsets.only(left: marginLeft, right: 0, top: 10, bottom: 5),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            print('asdjkdakksksks');
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ChurchScreen();
+            }));
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: buildRouteInfo()),
           ),
-        ],
+        ),
       ),
     );
+  }
+
+  BoxDecoration buildBackgroundImage() {
+    return BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Color(0XFF121212),
+          offset: const Offset(-1, 2),
+          blurRadius: 3.0,
+          spreadRadius: 1.0,
+        ),
+      ],
+      borderRadius: BorderRadius.circular(8),
+      image: DecorationImage(
+          colorFilter:
+              ColorFilter.mode(Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
+          image: NetworkImage('${route.image}'),
+          fit: BoxFit.fill),
+    );
+  }
+
+  List<Widget> buildRouteInfo() {
+    return <Widget>[
+      Text(
+        route.time,
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      Text(
+        route.title.toUpperCase(),
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      Wrap(
+        children: buildRouteLabels(),
+      )
+    ];
+  }
+
+  List<Widget> buildRouteLabels() {
+    return <Widget>[
+      Text(
+        'Distancia:  ${route.distance}',
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      SizedBox(
+        width: 6,
+      ),
+      Text(
+        'Desnivell:  ${route.elevation}',
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+    ];
   }
 }
