@@ -1,4 +1,3 @@
-import 'package:first_flutter_app/network/places_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'body.dart';

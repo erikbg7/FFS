@@ -566,6 +566,10 @@ const routesArray = [
 ];
 
 getRoutesFromJson2() {
+//  final firestoreService = FirestoreService();
+
+
+
   List<RouteInfo> routesList = [];
   List<RouteInfo> excursions = [];
   List<RouteInfo> passejades = [];
@@ -573,6 +577,36 @@ getRoutesFromJson2() {
   List<RouteInfo> others = [];
 
   List<List<RouteInfo>> routes = [];
+
+
+//  List<RouteInfo> rrr = await firestoreService.getRoutes();
+
+
+//  final aa = firestoreService.getRoutes();
+
+  print('00000000000000');
+//  print(aa);
+
+
+//  final routesA =
+//  firestoreService.getRoutes().forEach((dd) {
+//    var routeCategory = dd.;
+//    var newRoute = new RouteInfo(e['id'], e['title'], e['category'],
+//        e['duration'], e['distance'], e['elevation'], e['image']);
+//
+//    if (routeCategory == 'Excursió') {
+//      excursions.add(newRoute);
+//    } else if (routeCategory == 'Passejada') {
+//      passejades.add(newRoute);
+//    } else if (routeCategory == 'Caminada') {
+//      caminates.add(newRoute);
+//    } else {
+//      others.add(newRoute);
+//    }
+//
+//    firestoreService.saveRoute(newRoute);
+//    routesList.add(newRoute);
+//  });
 
   routesArray.forEach((e) {
     var routeCategory = e['category'];
@@ -589,6 +623,7 @@ getRoutesFromJson2() {
       others.add(newRoute);
     }
 
+//    firestoreService.saveRoute(newRoute);
     routesList.add(newRoute);
   });
 

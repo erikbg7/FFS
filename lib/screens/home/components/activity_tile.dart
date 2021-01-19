@@ -1,4 +1,6 @@
 import 'package:first_flutter_app/models/description_model.dart';
+import 'package:first_flutter_app/models/place_model.dart';
+import 'package:first_flutter_app/network/places_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'package:first_flutter_app/models/activity_model.dart';
@@ -10,9 +12,13 @@ class ActivityTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(item.id);
+    final firestoreService = FirestoreService();
+
     return InkWell(
       onTap: () {
+        final Product p =
+            Product(productId: item.id, price: 4.0, name: 'ndddame');
+        firestoreService.saveProduct(p);
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           final ActivityDescription description =
               ActivityDescription.getDescription(item.id);
@@ -43,7 +49,6 @@ class ActivityTile extends StatelessWidget {
                 blendMode: BlendMode.dstOut,
                 child: FadeInImage(
                   placeholder: AssetImage('assets/black.png'),
-//                  placeholder: AssetImage('assets/long-loader.gif'),
                   image: AssetImage('assets/${item.image}'),
                   fit: BoxFit.cover,
                 ),
@@ -53,8 +58,6 @@ class ActivityTile extends StatelessWidget {
               alignment: Alignment.center,
               heightFactor: 3.5,
               child: Column(
-//                crossAxisAlignment: CrossAxisAlignment.center,
-//                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     item.name,
