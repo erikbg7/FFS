@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-final routes = Firestore.instance.collection("routes");
-final test = Firestore.instance.collection("test");
+final routes = FirebaseFirestore.instance.collection("routes");
+final test = FirebaseFirestore.instance.collection("test");
 
 
-getActivitiesStream() => Firestore.instance.collection("activities").snapshots();
+getActivitiesStream() => FirebaseFirestore.instance.collection("activities").snapshots();
 
 setZoomInTest(number) {
-  routes.document('test').updateData({'zoom': 10});
+  routes.doc('test').update({'zoom': 10});
 }
 
 // Creates and initializes a new route
@@ -16,22 +16,22 @@ setZoomInTest(number) {
 // Then initializes de route in firestore and fill the geopoints field with
 // the expected structure array
 createNewRoute(routeName, coords) async {
-  final DocumentSnapshot doc = await routes.document("Ruta dels boscos - Barruera").get();
-  routes.document('$routeName').setData(doc.data);
-
-  final geopoints = [];
-
-  for (final c in coords) {
-    geopoints.add({'coord': new GeoPoint(c[1], c[0]), 'elev': c[2]});
-  }
-  routes.document('$routeName').updateData({'geopoints' : geopoints});
+//  final DocumentSnapshot doc = await routes.document("Ruta dels boscos - Barruera").get();
+//  routes.document('$routeName').setData(doc.data);
+//
+//  final geopoints = [];
+//
+//  for (final c in coords) {
+//    geopoints.add({'coord': new GeoPoint(c[1], c[0]), 'elev': c[2]});
+//  }
+//  routes.document('$routeName').updateData({'geopoints' : geopoints});
 }
 
 
 // Get all the information of a route (Ruta dels boscos - Barruera)
 getRouteInfo() async {
 //  final DocumentSnapshot doc = await routes.document("Ruta dels boscos - Barruera").get();
-  final DocumentSnapshot doc = await routes.document("test").get();
+  final DocumentSnapshot doc = await routes.doc("test").get();
   return doc.data;
 }
 

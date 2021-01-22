@@ -2,7 +2,6 @@ import 'package:first_flutter_app/bloc/activities_event.dart';
 import 'package:first_flutter_app/bloc/routes_bloc.dart';
 import 'package:first_flutter_app/bloc/routes_state.dart';
 import 'package:first_flutter_app/models/routes_model.dart';
-import 'package:first_flutter_app/network/routes_repository.dart';
 import 'package:first_flutter_app/screens/routes/getRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +22,7 @@ class RoutesScreen extends StatelessWidget {
       appBar: buildAppBar(),
       body: BlocProvider(
           create: (BuildContext context) {
-            return RoutesBloc(RoutesRepository());
+            return RoutesBloc();
           },
           child: RoutesListsBuilder(routesLists: a,)),
     );

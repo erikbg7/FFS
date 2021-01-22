@@ -5,9 +5,11 @@ import 'package:first_flutter_app/bloc/routes_state.dart';
 import 'package:first_flutter_app/network/routes_repository.dart';
 
 class RoutesBloc extends Bloc<ActivitiesEvent, RoutesListsState> {
-  final RoutesRepository repository;
+  final RoutesRepository _routesRepository;
 
-  RoutesBloc(this.repository);
+  RoutesBloc({RoutesRepository routesRepository})
+      : _routesRepository = routesRepository ?? RoutesRepository(),
+        super(RoutesListsInitial());
 
   @override
   RoutesListsState get initialState => RoutesListsInitial();
@@ -22,7 +24,7 @@ class RoutesBloc extends Bloc<ActivitiesEvent, RoutesListsState> {
     if (event is GetActivities) {
       // Emit either Loaded or Error
       try {
-        final activities = await repository.getRoutesLists();
+        final activities = await _routesRepository.getRoutesLists();
         yield RoutesListsLoaded(activities);
       } catch (e) {
         print('Error: $e');

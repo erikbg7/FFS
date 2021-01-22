@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreServiceChurch {
-  Firestore _db = Firestore.instance;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future saveChurch(Church church) {
     print('SAVING OBJECT');
     return _db
         .collection('churches')
-        .document(church.id)
-        .setData(church.toMap());
+        .doc(church.id)
+        .set(church.toMap());
   }
 
 
@@ -18,22 +18,22 @@ class FirestoreServiceChurch {
 
     var querySnap = await _db
         .collection('churches')
-        .getDocuments();
+        .get();
 
-    return querySnap.documents
-        .map((document) => Church.fromFirestore(document.data))
+    return querySnap.docs
+        .map((document) => Church.fromFirestore(document.data()))
         .toList();
   }
 
   Stream<List<Church>> getChurches() {
     return _db.collection('churches').snapshots().map((snapshot) => snapshot
-        .documents
-        .map((document) => Church.fromFirestore(document.data))
+        .docs
+        .map((document) => Church.fromFirestore(document.data()))
         .toList());
   }
 
   Future removeProduct(String id) {
-    return _db.collection('churches').document(id).delete();
+    return _db.collection('churches').doc(id).delete();
   }
 }
 

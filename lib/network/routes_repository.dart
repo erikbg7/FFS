@@ -5,15 +5,15 @@ import 'package:first_flutter_app/models/routes_model.dart';
 
 
 class RoutesRepository {
-  final Firestore _db = Firestore.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<RouteList>> _fetchLists() async {
     var ref = _db.collection("routes_list");
-    final QuerySnapshot activities = await ref.getDocuments();
+    final QuerySnapshot activities = await ref.get();
 
-    print(activities.documents.elementAt(1).data);
+    print(activities.docs.elementAt(1).data);
 
-    return activities.documents
+    return activities.docs
         .map((doc) => RouteList.fromFirestore(doc))
         .toList();
   }

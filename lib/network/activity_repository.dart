@@ -4,13 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/activity_model.dart';
 
 class ActivitiesRepository {
-  final Firestore _db = Firestore.instance;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
+
 
   Future<List<Activity>> _fetchActivities() async {
     var ref = _db.collection("activities");
-    final QuerySnapshot activities = await ref.getDocuments();
+    final QuerySnapshot activities = await ref.get();
 
-    return activities.documents
+    return activities.docs
         .map((doc) => Activity.fromFirestore(doc))
         .toList();
   }

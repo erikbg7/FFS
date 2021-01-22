@@ -7,7 +7,7 @@ class RouteList {
   RouteList(this.name, this.routes);
 
   factory RouteList.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data;
+    Map<String, dynamic> data = doc.data();
 
     print('\n\n');
 
@@ -65,14 +65,14 @@ class RouteInfo {
 }
 
 class FirestoreService {
-  Firestore _db = Firestore.instance;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future saveRoute(RouteInfo route) {
     print('SAVING OBJECT');
     return _db
         .collection('Trekking')
-        .document('${route.id}')
-        .setData(route.toMap());
+        .doc('${route.id}')
+        .set(route.toMap());
   }
 
 //  Future<List<RouteInfo>> getRoutes() async {

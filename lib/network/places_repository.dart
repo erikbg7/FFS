@@ -7,15 +7,15 @@ import 'package:first_flutter_app/models/place_model.dart';
 //eat --> restaurant, bar, cateteries
 
 class FirestoreService {
-  Firestore _db = Firestore.instance;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future saveProduct(Product product) {
     print('SAVING OBJECT');
     //TODO: we could have another document called (for example) recommendations, best rated, etc
         return _db
         .collection('fodddddddie')
-        .document(product.productId)
-        .setData(product.toMap());
+        .doc(product.productId)
+        .set(product.toMap());
 //    return _db
 //        .collection('eat')
 //        .document('places')
@@ -26,13 +26,13 @@ class FirestoreService {
 
   Stream getProducts() {
     return _db.collection('products').snapshots().map((snapshot) => snapshot
-        .documents
-        .map((document) => Product.fromFirestore(document.data))
+        .docs
+        .map((document) => Product.fromFirestore(document.data()))
         .toList());
   }
 
   Future removeProduct(String productId) {
-    return _db.collection('products').document(productId).delete();
+    return _db.collection('products').doc(productId).delete();
   }
 }
 

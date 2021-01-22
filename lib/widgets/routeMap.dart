@@ -1376,13 +1376,13 @@ final coord = [
 /////////////////////////////////////////////////////////////////////////////
 /////////////////// Google Maps
 ////////////////////////////////////////////////////////////////////////////
-final route = Firestore.instance
+final route = FirebaseFirestore.instance
     .collection("routes")
-    .document("Ruta dels boscos - Barruera");
-final batch = Firestore.instance.batch();
+    .doc("Ruta dels boscos - Barruera");
+final batch = FirebaseFirestore.instance.batch();
 
 final DocumentReference documentReference =
-    Firestore.instance.document('routes/test');
+  FirebaseFirestore.instance.doc('routes/test');
 
 //Set<Polyline> route222 = () {}
 

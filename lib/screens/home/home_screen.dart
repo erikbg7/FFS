@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:first_flutter_app/bloc/activities_bloc.dart';
-import 'package:first_flutter_app/network/activity_repository.dart';
 
 import 'components/activities_list.dart';
 
@@ -31,7 +30,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (BuildContext context) {
-          return ActivitiesBloc(ActivitiesRepository());
+          return ActivitiesBloc();
         },
         child: ActivitiesList(),
       ),
