@@ -1,0 +1,123 @@
+
+
+
+ToDO
+
+Reuse same screen "Description" for Route Descriptions and Church Descriptions
+Create components/ for each one of its bodies.
+
+
+Rename "church" folder by "churches" and create the list that will fetch and display the list of churches.
+
+Use same approach used for Churches for fetching Routes from Firestore using a future builder.
+
+
+Create error screen
+
+
+OBJECTIVES
+Develop and publish a real app using Flutter
+
+
+COPY DESIGNS
+https://www.youtube.com/watch?v=R1OvaFxpJ38
+http://youtube.com/watch?v=FM5946S7u4c
+
+
+DARK MODE
+https://uxplanet.org/8-tips-for-dark-theme-design-8dfc2f8f7ab6
+https://medium.com/@pmutisya/dark-mode-in-flutter-3742062f9f59
+
+
+IMAGES BUCKET URL
+https://storage.googleapis.com/appvallboi.appspot.com/Routes/01camibarruera.jpg
+
+
+MAKE IMAGES PUBLIC
+https://cloud.google.com/storage/docs/access-control/making-data-public?hl=es
+https://console.cloud.google.com/storage/browser?hl=es&_ga=2.6670962.1366558620.1607204093-172786002.1604707962&project=appvallboi&prefix=
+
+
+REQUEST IMAGE USING FIREBASE STORAGE
+import 'package:firebase_storage/firebase_storage.dart';
+Future<String> _somethi() async {
+  final ref = FirebaseStorage().ref().child('Routes/037durro-barruera.jpg');
+  var imageString = await ref.getDownloadURL();
+  return imageString;
+}
+
+
+
+TODO  --> FINIISH IMPLEMENTATION OF PLACES CRUD, so we can upload faster the values from the device and use  it
+
+
+
+Make a simple UI
+
+Populate DDBB with updated information
+
+Improve simple UI (optional)
+
+Finish integration tests
+
+Implement some unit and e2e tests
+
+Write down the memory
+
+Publish app
+
+
+
+
+We will have to types of list views:
+
+-Routes View: multiple lists of items can be scrolled horizontally (Routes, food, sleep)
+
+- SingleList: one list can be horizontally scrolled with no intermediate scroll (Romanic)
+
+
+
+
+Each item has to have:
+
+- id
+- type (eat, sleep, activity)
+- name
+- description
+- geopoint  (coordinates)
+- location  (Taull, Boí, etc)
+
+
+
+// General category "Where to eat", "On menjar"
+// Reuse routes view.
+// We will have 3 horizontal scrollable lists
+
+
+Restaurants
+
+Cafeteries
+
+Bars
+
+
+
+
+// General category "Where to sleep", "On allotjarse"
+// Reuse routes view.
+// We will have X horizontal scrollable lists
+
+
+Campings
+
+Cases rurals
+
+Hotels
+
+Apartaments
+
+
+// General category "Trekking", "Senderisme"
+// Reuse routes view.
+// We will have X horizontal scrollable lists
+

@@ -1,57 +1,46 @@
-import 'package:first_flutter_app/widgets/elevation_chart.dart';
-import 'package:first_flutter_app/widgets/routeMap.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_flutter_app/app/loaded_app.dart';
 import 'package:flutter/material.dart';
 
-import 'bloc_example/activities_list.dart';
 
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
 void main() {
 //  WidgetsFlutterBinding.ensureInitialized();
-  runApp(VallBoiApp());
+  runApp(MyApp());
 }
-
-/////////////////////////////////////////////////////////////////////////////
-/////////////////// Vall de Boí Apps
-////////////////////////////////////////////////////////////////////////////
-class VallBoiApp extends StatefulWidget {
-  const VallBoiApp({Key key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _VallBoiAppState();
-}
-
-class _VallBoiAppState extends State<VallBoiApp> {
-  int _currentTabIndex = 0;
-
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+////////////// Vall de Boí App ////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _kPages = <Widget>[ActivitiesList(), RouteMap(), AreaGradient()];
+    final _initialization = Firebase.initializeApp();
+    return FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) return Container(
+            color: Colors.red,
+            height: double.infinity,
+            width: double.infinity
+          );
 
-    final _kNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-          icon: Icon(Icons.cloud), title: Text('Activities')),
-      BottomNavigationBarItem(icon: Icon(Icons.alarm), title: Text('Route')),
-      BottomNavigationBarItem(icon: Icon(Icons.forum), title: Text('Test')),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.settings), title: Text('Settings')),
-    ];
+          if (snapshot.connectionState == ConnectionState.done) return VallBoiApp();
 
-    final bottomNavBar = BottomNavigationBar(
-        items: _kNavBarItems,
-        currentIndex: _currentTabIndex,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          setState(() {
-            _currentTabIndex = index;
-          });
+          return Container(
+              color: Colors.red,
+              height: double.infinity,
+              width: double.infinity
+          );
         });
-
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme:
-            ThemeData(primarySwatch: Colors.teal, brightness: Brightness.dark),
-        home: Scaffold(
-          body: Center(child: _kPages[_currentTabIndex]),
-          bottomNavigationBar: bottomNavBar,
-        ));
   }
 }

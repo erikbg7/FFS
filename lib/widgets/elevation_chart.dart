@@ -1,7 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
+
+List<SalesData> buildCoords(){
+  List<SalesData> coords = [];
+  double count = 0;
+  for (final c in coord) {
+    coords.add(new SalesData(count, c[2]));
+    count++;
+  }
+  return coords;
+}
+
+final List<SalesData> coords = buildCoords();
+
+
 
 //ignore: must_be_immutable
 class AreaGradient extends StatefulWidget {
@@ -12,19 +26,8 @@ class AreaGradient extends StatefulWidget {
 }
 
 class _AreaGradientState extends State<AreaGradient> {
-  List<SalesData> coords = [];
-  double count = 0;
-
   @override
   Widget build(BuildContext context) {
-    coords = [];
-    count = 0;
-    for (final c in coord) {
-      coords.add(new SalesData(count, c[2]));
-      count++;
-    }
-
-    print(count);
 
     return SfCartesianChart(
         margin: EdgeInsets.all(0),
@@ -41,14 +44,10 @@ class _AreaGradientState extends State<AreaGradient> {
           axisLine: AxisLine(color: Colors.transparent),
         ),
         primaryYAxis: NumericAxis(
-//          isVisible: false,
           labelFormat: '{value}m',
           interval: 200,
           minimum: 800,
           maximum: 1800,
-//          interval: 150,
-//          minimum: 850,
-//          maximum: 1850,
           labelPosition: LabelPosition.inside,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
           majorTickLines: MajorTickLines(size: 0),
