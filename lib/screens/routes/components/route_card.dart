@@ -1,66 +1,106 @@
-
+import 'package:first_flutter_app/models/routes_model.dart';
+import 'package:first_flutter_app/screens/church/church_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'route_info_label.dart';
-
-
 class RouteCard extends StatelessWidget {
+  final RouteInfo route;
+
+  const RouteCard({Key key, this.route}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final marginLeft = key.toString().contains('route-0') ? 19.0 : 12.0;
+
     return Container(
-      height: 210,
-      width: 270,
-      margin: EdgeInsets.only(left: 20, right: 10, top: 0, bottom: 0),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: 210,
-            width: 270,
-            padding: EdgeInsets.all(7),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: Colors.white),
+      height: size.height * 0.29,
+      width: size.width * 0.8,
+      decoration: buildBackgroundImage(),
+      margin: EdgeInsets.only(left: marginLeft, right: 0, top: 10, bottom: 5),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            print('asdjkdakksksks');
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ChurchScreen();
+            }));
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Image(
-                    alignment: Alignment.center,
-                    height: 100,
-                    width: double.infinity,
-                    image: AssetImage('assets/romanic.jpg'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Container(
-                  height: 10,
-                ),
-                Text(
-                  "Barruera - Boí (Camí de l'Aigua)",
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                ),
-                Row(
-                  children: <Widget>[
-                    RouteInfoLabel("1 h 40 min"),
-                    RouteInfoLabel("3.97 km"),
-                    RouteInfoLabel("180 m \u{2197}"),
-                  ],
-                )
-              ],
-            ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: buildRouteInfo()),
           ),
-          Positioned.fill(
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-//                splashColor: Colors.lightGreenAccent,
-                onTap: () {
-                  print("/////////////");
-                },
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
+  }
+
+  BoxDecoration buildBackgroundImage() {
+    return BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: Color(0XFF121212),
+          offset: const Offset(-1, 2),
+          blurRadius: 3.0,
+          spreadRadius: 1.0,
+        ),
+      ],
+      borderRadius: BorderRadius.circular(8),
+      image: DecorationImage(
+          colorFilter:
+              ColorFilter.mode(Color.fromARGB(50, 0, 0, 0), BlendMode.darken),
+          image: NetworkImage('${route.image}'),
+          fit: BoxFit.fill),
+    );
+  }
+
+  List<Widget> buildRouteInfo() {
+    return <Widget>[
+      Text(
+        route.time,
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      Text(
+        route.title.toUpperCase(),
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      Wrap(
+        children: buildRouteLabels(),
+      )
+    ];
+  }
+
+  List<Widget> buildRouteLabels() {
+    return <Widget>[
+      Text(
+        'Distancia:  ${route.distance}',
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+      SizedBox(
+        width: 6,
+      ),
+      Text(
+        'Desnivell:  ${route.elevation}',
+        style: TextStyle(
+            color: Colors.grey[50],
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto'),
+      ),
+    ];
   }
 }

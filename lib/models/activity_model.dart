@@ -13,7 +13,7 @@ class Activity extends Equatable {
   Activity({this.type, this.id, this.name, this.description, this.image});
 
   factory Activity.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data;
+    Map<String, dynamic> data = doc.data();
 
     return Activity(
       type: ActivityType.culture,

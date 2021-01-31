@@ -1376,13 +1376,15 @@ final coord = [
 /////////////////////////////////////////////////////////////////////////////
 /////////////////// Google Maps
 ////////////////////////////////////////////////////////////////////////////
-final route = Firestore.instance
+final route = FirebaseFirestore.instance
     .collection("routes")
-    .document("Ruta dels boscos - Barruera");
-final batch = Firestore.instance.batch();
+    .doc("Ruta dels boscos - Barruera");
+final batch = FirebaseFirestore.instance.batch();
 
 final DocumentReference documentReference =
-    Firestore.instance.document('routes/test');
+  FirebaseFirestore.instance.doc('routes/test');
+
+//Set<Polyline> route222 = () {}
 
 class RouteMap extends StatefulWidget {
   @override
@@ -1394,6 +1396,7 @@ class RouteMap extends StatefulWidget {
 class _RouteMapState extends State<RouteMap> {
   final List<LatLng> points = <LatLng>[];
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isOpened = false;
 
 //  List<GeoPoint3> geopoints = <GeoPoint3>[];
   GeoPoint center;
@@ -1418,11 +1421,15 @@ class _RouteMapState extends State<RouteMap> {
         points.add(new LatLng(c[1], c[0]));
       }
 
-      lines.add(Polyline(
+      final poli = Polyline(
           points: points,
           polylineId: PolylineId("line_one"),
           color: Colors.orange,
-          width: 5));
+          width: 5);
+
+      lines.add(poli);
+
+      print('////////////-------s----PPPP/////////////  $points');
     });
   }
 
@@ -1430,7 +1437,15 @@ class _RouteMapState extends State<RouteMap> {
   Widget build(BuildContext context) => Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: const Text('Ruta dels Boscos - Barruera'),
+          title: const Text(
+            'Ruta dels Boscos - Barruera',
+            style: TextStyle(
+                fontFamily: 'Lobster',
+                fontWeight: FontWeight.w200,
+                fontSize: 19),
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color.fromARGB(255, 0, 169, 186),
         ),
         body: Container(
           child: Stack(
@@ -1445,17 +1460,49 @@ class _RouteMapState extends State<RouteMap> {
                 polylines: Set<Polyline>.of(lines),
                 // markers: _markers.values.toSet(),
               ),
+              ClipOval(
+                child: Material(
+                  color: Colors.orange[100], // button color
+                  child: InkWell(
+                    splashColor: Colors.orange, // inkwell color
+                    child: SizedBox(
+                      width: 56,
+                      height: 56,
+                      child: Icon(Icons.my_location),
+                    ),
+                    onTap: () {
+                      // TODO: Add the operation to be performed
+                      // on button tap
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          splashColor: Colors.blue,
+          backgroundColor: Colors.blue[100],
+
           child: Icon(Icons.show_chart),
-          onPressed: () => this._scaffoldKey.currentState.showBottomSheet(
-              (ctx) => _buildBottomSheet(ctx),
-              backgroundColor: Colors.transparent),
+          onPressed: () {
+//            if (this.isOpened) {
+//              return Navigator.pop(context);
+//            }
+
+            if (isOpened) {
+              Navigator.pop(context);
+            }
+
+            if (!isOpened) {
+              this._scaffoldKey.currentState.showBottomSheet(
+                  (ctx) => _buildBottomSheet(ctx),
+                  backgroundColor: Colors.transparent);
+            }
+            this.isOpened = !this.isOpened;
+          },
         ),
       );
-
   Container _buildBottomSheet(BuildContext context) {
     return Container(
       color: Color.fromARGB(170, 148, 168, 170),
