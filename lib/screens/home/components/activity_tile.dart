@@ -10,15 +10,12 @@ class ActivityTile extends StatelessWidget {
   const ActivityTile({Key key, this.item}) : super(key: key);
   final Activity item;
 
+
+
   @override
   Widget build(BuildContext context) {
-    final firestoreService = FirestoreService();
-
     return InkWell(
       onTap: () {
-        final Product p =
-            Product(productId: item.id, price: 4.0, name: 'ndddame');
-        firestoreService.saveProduct(p);
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           final ActivityDescription description =
               ActivityDescription.getDescription(item.id);
