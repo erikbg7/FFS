@@ -2,9 +2,9 @@ import 'package:first_flutter_app/screens/home/components/activity_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:first_flutter_app/bloc/activities_event.dart';
-import 'package:first_flutter_app/bloc/activities_state.dart';
-import 'package:first_flutter_app/bloc/activities_bloc.dart';
+import 'package:first_flutter_app/bloc/activities/activities_event.dart';
+import 'package:first_flutter_app/bloc/activities/activities_state.dart';
+import 'package:first_flutter_app/bloc/activities/activities_bloc.dart';
 import 'package:first_flutter_app/models/activity_model.dart';
 
 

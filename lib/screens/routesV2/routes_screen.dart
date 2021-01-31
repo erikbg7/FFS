@@ -1,6 +1,6 @@
-import 'package:first_flutter_app/bloc/activities_event.dart';
-import 'package:first_flutter_app/bloc/routes_bloc.dart';
-import 'package:first_flutter_app/bloc/routes_state.dart';
+import 'package:first_flutter_app/bloc/activities/activities_event.dart';
+import 'package:first_flutter_app/bloc/routes/routes_bloc.dart';
+import 'package:first_flutter_app/bloc/routes/routes_state.dart';
 import 'package:first_flutter_app/models/routes_model.dart';
 import 'package:first_flutter_app/screens/routes/getRoutes.dart';
 import 'package:flutter/material.dart';

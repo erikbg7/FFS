@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:first_flutter_app/bloc/activities_bloc.dart';
+import 'package:first_flutter_app/bloc/activities/activities_bloc.dart';
 
 import 'components/activities_list.dart';
 

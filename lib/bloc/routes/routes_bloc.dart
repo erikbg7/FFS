@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:first_flutter_app/bloc/activities_event.dart';
-import 'package:first_flutter_app/bloc/routes_state.dart';
+import 'package:first_flutter_app/bloc/activities/activities_event.dart';
+import 'package:first_flutter_app/bloc/routes/routes_state.dart';
 import 'package:first_flutter_app/network/routes_repository.dart';
 
 class RoutesBloc extends Bloc<ActivitiesEvent, RoutesListsState> {
