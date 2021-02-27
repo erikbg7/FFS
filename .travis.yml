@@ -1,4 +1,4 @@
-fluttos:
+os:
   - linux
 sudo: false
 addons:
